@@ -24,24 +24,33 @@
 
             <!-- APP MAIN -->
             <main class="app-main">
-                <!-- Add input -->
+                <!-- ADD INPUT -->
                 <section class="input-todo">
                     <input v-model.trim="newTodo" type="text" placeholder="Cose da fare..." @keyup.enter="addTodo" ref="todoInput">
                     <button class="btn" @click="addTodo">Add</button>
                 </section>
 
-                <!-- Todo List -->
+                <!-- TODO LIST -->
                 <ul class="todo-list">
                     <li v-for="(item, index) in todos" class="todo-item impo">
                         <span class="text" :class="{completed: item.completed, important: item.important}" @click="updateStatus(index)">{{item.text}}</span>
                         <div class="todo-icons">
+                            <i class="fas fa-edit edit" @click="showEdit(index)"></i>
                             <i class="fas fa-star important" :class="{active: item.important}" @click="switchImportant(index)"></i>
                             <i class="fas fa-trash delete" @click="trashTodo(index)"></i>
+                        </div>
+                        <!-- Edit Input -->
+                        <div v-show="item.editTodo.visibility" class="edit-wrap">
+                            <input v-model="item.editTodo.text" class="edit-input" type="text">
+                            <div class="edit-icons">
+                                <i class="fas fa-check check" @click="updateTodo(index)"></i>
+                                <i class="fas fa-times delete" @click="closeEdit(index)"></i>
+                            </div>
                         </div>
                     </li>
                 </ul>
 
-                <!-- Delete All Completed -->
+                <!-- DELETE ALL COMPLETED -->
                 <div class="delete-box">
                     <button class="btn btn-del" @click="deleteAllCompleted">
                         <i class="fas fa-trash"></i>
@@ -49,7 +58,7 @@
                     </button>
                 </div>
 
-                <!-- Trash -->
+                <!-- TRASH -->
                 <div class="trash">
                     
                     <i class="fas fa-trash-alt"></i>

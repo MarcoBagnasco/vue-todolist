@@ -47,7 +47,7 @@ body{
 }
 
 /* APP MAIN */
-/* Add input */
+/* ADD INPUT */
 .input-todo{
     display: flex;
     margin-bottom: 20px;
@@ -65,8 +65,9 @@ body{
     background-color: rgba(221, 149, 15, 0.637);
 }
 
-/* Todo List */
+/* TODO LIST */
 .todo-list .todo-item{
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,20 +113,16 @@ body{
 /* Important Items */
 .todo-list .todo-item .text.important{
     color: rgb(235, 32, 32);
+    text-transform: uppercase;
 }
 
 /* Item Icons */
 .todo-item .todo-icons{
     display: flex;
 }
-/* Trash Icon */
-.todo-list .todo-item i{
-    margin-left: 10px;
-    color: #888;
-    cursor: pointer;
-}
-.todo-list .todo-item i:hover{
-    color: rgb(189, 33, 33);
+/* Edit Icon */
+.todo-list .todo-item i.edit:hover{
+    color: rgb(221, 149, 15);
 }
 /* Important Icon */
 .todo-list .todo-item i.important{
@@ -137,14 +134,46 @@ body{
 .todo-list .todo-item i.important.active{
     color:rgb(2, 133, 255);
 }
+/* Trash Icon */
+.todo-list .todo-item i{
+    margin-left: 10px;
+    color: #888;
+    cursor: pointer;
+}
+.todo-list .todo-item i.delete:hover{
+    color: rgb(189, 33, 33);
+}
 
-/* Delete All Completed */
+/* Edit Input */
+.edit-wrap{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+
+}
+.edit-wrap .edit-input{
+    padding: 0 80px 0 10px;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+}
+.edit-wrap .edit-icons{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+.edit-wrap .edit-icons i.check:hover{
+    color: rgb(46, 214, 46);
+}
+
+/* DELETE ALL COMPLETED */
 .delete-box{
     text-align: right;
 }
 
-
-/* Trash */
+/* TRASH */
 .trash{
     position: absolute;
     width: 300px;
@@ -185,7 +214,6 @@ body{
     color: rgb(235, 32, 32);
 }
 /* Empty Button */
-
 .trash-content .btn.btn-del{
     font-size: 12px;
     margin: 10px;

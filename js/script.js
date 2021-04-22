@@ -7,23 +7,39 @@ const app = new Vue({
                 text: 'Fare la spesa',
                 completed: false,
                 important: false,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
             },
             {
                 text: 'Pulire la cantina',
                 completed: false,
                 important: false,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
 
             },
             {
                 text: 'Preparare la torta',
                 completed: false,
                 important: false,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
 
             },
             {
                 text: 'Stendere',
                 completed: false,
                 important: false,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
 
             },
         ],
@@ -48,6 +64,11 @@ const app = new Vue({
                     {
                         text: this.newTodo,
                         completed: false,
+                        important: false,
+                        editTodo: {
+                            visibility: false,
+                            text: '',
+                        },
                     }
                 );
 
@@ -130,6 +151,7 @@ const app = new Vue({
          */
         restoreTodo(index){
             this.deleted[index].completed = false;
+            this.deleted[index].important = false;
             this.todos.push(this.deleted[index]);
             this.deleteTodo(index);
         },
@@ -173,6 +195,23 @@ const app = new Vue({
             if(!this.todos[index].completed){
                 this.todos[index].important = !this.todos[index].important;
             }
-        }
+        },
+
+        showEdit(index){
+            if(!this.todos[index].completed){
+                this.todos[index].editTodo.visibility = true;
+                this.todos[index].editTodo.text = this.todos[index].text;
+            }
+        },
+
+        updateTodo(index){
+            this.todos[index].text = this.todos[index].editTodo.text;
+            this.closeEdit(index);
+        },
+
+        closeEdit(index){
+            this.todos[index].editTodo.visibility = false;
+            this.todos[index].editTodo.text = '';
+        },
     }
 });
