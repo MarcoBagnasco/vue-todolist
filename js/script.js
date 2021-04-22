@@ -25,6 +25,9 @@ const app = new Vue({
             visibility: false,
             index: null,
         },
+        deleted:[],
+        trash: false,
+        modalTrash: false,
     },
     methods: {
         /**
@@ -50,10 +53,11 @@ const app = new Vue({
          * Delete Specific Todo
          * @param {number} index array position of todo
          */
-        deleteTodo(index){
+        trashTodo(index){
             // Delete if Completed
             if(this.todos[index].completed){
-                this.todos.splice(index, 1);
+                // Move Deleted in Trash
+                this.deleted.push(this.todos.splice(index, 1)[0]);
             } else {
                 // Show Delete Alert
                 this.alertDelete.visibility = true;
@@ -74,7 +78,7 @@ const app = new Vue({
          */
         confirmDelete(){
             this.todos[this.alertDelete.index].completed = true;
-            this.deleteTodo(this.alertDelete.index);
+            this.trashTodo(this.alertDelete.index);
             this.closeAlert();
         },
 
@@ -85,10 +89,12 @@ const app = new Vue({
             this.alertDelete.visibility = false;
             this.alertDelete.index = null;
         },
+
         /**
          * Delete All Completed Todo
          */
         deleteAllCompleted(){
+            // Find Completed
             const complete = this.todos.filter(element=> {
                 if(element.completed){
                     return element
@@ -96,9 +102,59 @@ const app = new Vue({
             });
             complete.forEach(element => {
                 if(this.todos.includes(element)){
-                    this.todos.splice(this.todos.indexOf(element), 1);
+                    //Move Deleted in Trash
+                    this.deleted.push(this.todos.splice(this.todos.indexOf(element), 1)[0]);
                 }
             });
         },
+
+        /**
+         * Definitely Delete
+         * @param {number} index array position of todo
+         */
+        deleteTodo(index){
+            this.deleted.splice(index, 1);
+        },
+
+        /**
+         * Restore Trashed Todo
+         * @param {number} index array position of todo
+         */
+        restoreTodo(index){
+            this.deleted[index].completed = false;
+            this.todos.push(this.deleted[index]);
+            this.deleteTodo(index);
+        },
+
+        /**
+         * Show Trash Content
+         */
+        showTrash(){
+            this.trash = !this.trash;
+        },
+
+        /**
+         * Show Modal Trash
+         */
+        showModalTrash(){
+            if(this.deleted.length > 0){
+                this.modalTrash = true;
+            }
+        },
+
+        /**
+         * Close Modal Trash
+         */
+        closeModalTrash(){
+            this.modalTrash = false;
+        },
+
+        /**
+         * Empty Trash
+         */
+        emptyTrash(){
+            this.deleted.splice(0);
+            this.closeModalTrash();
+        }
     }
 });

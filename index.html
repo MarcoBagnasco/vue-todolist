@@ -36,7 +36,7 @@
                         <span class="text" :class="{completed: item.completed}" @click="updateStatus(index)">{{item.text}}</span>
                         <div class="todo-icons">
                             <i class="fas fa-star important"></i>
-                            <i class="fas fa-trash delete" @click="deleteTodo(index)"></i>
+                            <i class="fas fa-trash delete" @click="trashTodo(index)"></i>
                         </div>
                     </li>
                 </ul>
@@ -48,10 +48,40 @@
                         Delete all completed
                     </button>
                 </div>
+
+                <!-- Trash -->
+                <div class="trash">
+                    
+                    <i class="fas fa-trash-alt"></i>
+                    <i v-show="!trash" class="fas fa-chevron-down arrow" @click="showTrash"></i>
+                    <i v-show="trash" class="fas fa-chevron-up arrow" @click="showTrash"></i>
+                    
+                    <div v-show="trash" class="trash-content">
+                        <ul class="deleted-todo-list">
+                            <li v-for="(item, index) in deleted" class="deleted-todo">
+                                {{item.text}}
+                                <div class="trash-icons">
+                                    <i class="fas fa-trash-restore restore" @click="restoreTodo(index)"></i>
+                                    <i class="fas fa-times delete" @click="deleteTodo(index)"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <button v-show="deleted.length > 0" class="btn btn-del" @click="showModalTrash">Empty Trash</button>
+
+                        <!-- Trash modal -->
+                        <div v-show="modalTrash" class="modal trash-modal">
+                            <div class="modal-box">
+                                <p>Are You Sure to Delete All?</p>
+                                <button class="btn" @click="emptyTrash">Yes</button>
+                                <button class="btn" @click="closeModalTrash">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
 
-        <!-- MODAL -->
-        <div v-show="alertDelete.visibility" class="modal">
+        <!-- DELETE ALL MODAL -->
+        <div v-show="alertDelete.visibility" class="modal delete-all-modal">
             <div class="modal-box">
                 <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
                 <button class="btn" @click="confirmDelete">Yes</button>

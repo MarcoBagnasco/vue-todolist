@@ -143,28 +143,84 @@ body{
     text-align: right;
 }
 
+
+/* Trash */
+.trash{
+    position: absolute;
+    width: 300px;
+    top: 110px;
+    right: 50px;
+    padding: 20px 10px;
+}
+.trash i.arrow{
+    font-size: 18px;
+    cursor: pointer;
+}
+.trash .trash-content{
+    position: relative;
+    width: 300px;
+    text-align: center;
+    background-color: #fff;
+}
+/* Deleted Todo */
+.trash-content .deleted-todo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+.deleted-todo .trash-icons{
+    display: flex;
+}
+.deleted-todo .trash-icons i{
+    margin-left: 10px;
+    color: #888;
+    cursor: pointer;
+}
+.deleted-todo .trash-icons i.restore:hover{
+    color: rgb(46, 214, 46);
+}
+.deleted-todo .trash-icons i.delete:hover{
+    color: rgb(235, 32, 32);
+}
+/* Empty Button */
+
+.trash-content .btn.btn-del{
+    font-size: 12px;
+    margin: 10px;
+}
+
 /* MODAL */
 .modal{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
     background-color: rgba(0,0,0, .6);
 }
-.modal .modal-box{
-    width: 500px;
+.modal-box{
     padding: 20px;
     text-align: center;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, .8);
 }
-.modal .modal-box p{
+.modal-box p{
     margin-bottom: 10px;
 }
-.modal.active{
-    display: flex;
+/* Delete All Modal */
+.delete-all-modal{
+    position: fixed;
+    min-height: 100vh;
+}
+.delete-all-modal .modal-box{
+    width: 500px;
+}
+
+/* Trash Modal */
+.trash-modal{
+    position: absolute;
+    height: 100%;
 }
