@@ -32,10 +32,10 @@
 
                 <!-- Todo List -->
                 <ul class="todo-list">
-                    <li v-for="(item, index) in todos" class="todo-item">
-                        <span class="text" :class="{completed: item.completed}" @click="updateStatus(index)">{{item.text}}</span>
+                    <li v-for="(item, index) in todos" class="todo-item impo">
+                        <span class="text" :class="{completed: item.completed, important: item.important}" @click="updateStatus(index)">{{item.text}}</span>
                         <div class="todo-icons">
-                            <i class="fas fa-star important"></i>
+                            <i class="fas fa-star important" :class="{active: item.important}" @click="switchImportant(index)"></i>
                             <i class="fas fa-trash delete" @click="trashTodo(index)"></i>
                         </div>
                     </li>

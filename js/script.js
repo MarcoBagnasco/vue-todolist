@@ -6,18 +6,25 @@ const app = new Vue({
             {
                 text: 'Fare la spesa',
                 completed: false,
+                important: false,
             },
             {
                 text: 'Pulire la cantina',
                 completed: false,
+                important: false,
+
             },
             {
                 text: 'Preparare la torta',
                 completed: false,
+                important: false,
+
             },
             {
                 text: 'Stendere',
                 completed: false,
+                important: false,
+
             },
         ],
         newTodo: '',
@@ -70,7 +77,8 @@ const app = new Vue({
          * @param {number} index array position of todo
          */
         updateStatus(index){
-            this.todos[index].completed = !this.todos[index].completed
+            this.todos[index].completed = !this.todos[index].completed;
+            this.todos[index].important = false;
         },
 
         /**
@@ -155,6 +163,16 @@ const app = new Vue({
         emptyTrash(){
             this.deleted.splice(0);
             this.closeModalTrash();
+        },
+
+        /**
+         * Important Signature
+         * @param {number} index array position of todo
+         */
+        switchImportant(index){
+            if(!this.todos[index].completed){
+                this.todos[index].important = !this.todos[index].important;
+            }
         }
     }
 });
