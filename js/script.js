@@ -19,6 +19,9 @@ const app = new Vue({
         newTodo: '',
     },
     methods: {
+        /**
+         * Add New Todo
+         */
         addTodo(){
 
             if(this.newTodo !== ''){
@@ -33,6 +36,13 @@ const app = new Vue({
                 this.newTodo = '';
                 this.$refs.todoInput.focus();
             }
-        }
+        },
+        /**
+         * Delete Specific Todo
+         * @param {number} index array position of todo
+         */
+        deleteTodo(index){
+            this.todos.splice(index, 1);
+        },
     }
 });

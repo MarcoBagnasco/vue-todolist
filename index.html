@@ -32,11 +32,11 @@
 
                 <!-- Todo List -->
                 <ul class="todo-list">
-                    <li v-for="item in todos" class="todo-item">
+                    <li v-for="(item, index) in todos" class="todo-item">
                         <span class="text">{{item.text}}</span>
                         <div class="todo-icons">
                             <i class="fas fa-star important"></i>
-                            <i class="fas fa-trash delete"></i>
+                            <i class="fas fa-trash delete" @click="deleteTodo(index)"></i>
                         </div>
                     </li>
                 </ul>
