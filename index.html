@@ -9,11 +9,56 @@
     <!-- VUE -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
+    <!-- ICONS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous'/>
+    
     <!-- STYLE -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
+    <div class="app">
+        <!-- APP HEADER -->
+        <header class="app-header">
+            <h1>ToDo List</h1>
+        </header>
+
+        <!-- APP MAIN -->
+        <main class="app-main">
+            <!-- Add input -->
+            <input class="add" type="text" placeholder="Cose da fare...">
+
+            <!-- Todo List -->
+            <ul class="todo-list"></ul>
+
+            <!-- Delete All Completed -->
+            <div class="delete-box">
+                <button class="btn btn-del">
+                    <i class="fas fa-trash"></i>
+                    Delete all completed
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- TEMPLATE -->
+    <div id="template" style="display:none">
+        <!-- List Item -->
+        <li class="todo-item">
+            <span class="text"></span>
+            <i class="fas fa-star important"></i>
+            <i class="fas fa-trash delete"></i>
+        </li>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal">
+        <div class="modal-box">
+            <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
+            <button class="btn btn-yes">Yes</button>
+            <button class="btn btn-no">No</button>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script src="./js/script.js"></script>
 </body>

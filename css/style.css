@@ -1,0 +1,162 @@
+/* GENERAL */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 40px;
+    font-size: 26px;
+    background-color: rgba(240, 218, 122, 0.89);
+}
+/* UTILITIES */
+/* Buttons */
+.btn{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.btn:hover,
+.btn:focus{
+    background-color: #aaa;
+}
+.btn.btn-del{
+    margin-top: 10px;
+    color: #fff;
+    background-color: #888;
+    border: 0;
+    border-radius: 40px;
+}
+.btn.btn-del:hover{
+    background-color: rgb(189, 33, 33);
+}
+
+/* APP */
+.app{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* APP HEADER */
+.app-header{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* APP MAIN */
+/* Add input */
+.add{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: 1px solid #888;
+    outline: none;
+    /* cursor: url('../img/pen.png'), auto; */
+}
+.add:focus{
+    background-color: rgba(221, 149, 15, 0.637);
+}
+
+/* Todo List */
+.todo-list .todo-item{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-bottom: 1px solid #000;
+}
+
+/* Item Text */
+.todo-list .todo-item .text{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    /* cursor: url('../img/check.png'), auto; */
+}
+.todo-list .todo-item .text::before{
+    content: '';
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+/* Completed Items*/
+.todo-list .todo-item .text.completed{
+    color: rgba(0,0,0, .3);
+    text-decoration: line-through;
+}
+.todo-list .todo-item .text.completed::after{
+    position: absolute;
+    top: 0;
+    left: -1px;
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-size: 21px;
+    font-weight: 900;
+    text-shadow: 0 0 2px #000;
+    color: #01a701;
+}
+/* Important Items */
+.todo-list .todo-item .text.important{
+    color: rgb(235, 32, 32);
+}
+
+/* Item Icons */
+/* Trash Icon */
+.todo-list .todo-item i{
+    color: #888;
+    cursor: pointer;
+}
+.todo-list .todo-item i:hover{
+    color: rgb(189, 33, 33);
+}
+/* Important Icon */
+.todo-list .todo-item i.important{
+    position: absolute;
+    right: 40px;
+    color: #bbb;
+}
+.todo-list .todo-item i.important:hover{
+    color:rgba(2, 133, 255, 0.466)
+}
+.todo-list .todo-item i.important.active{
+    color:rgb(2, 133, 255);
+}
+
+/* Delete All Completed */
+.delete-box{
+    text-align: right;
+}
+
+/* MODAL */
+.modal{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0,0,0, .6);
+}
+.modal .modal-box{
+    width: 500px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, .8);
+}
+.modal .modal-box p{
+    margin-bottom: 10px;
+}
+.modal.active{
+    display: flex;
+}
