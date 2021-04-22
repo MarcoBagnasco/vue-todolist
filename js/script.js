@@ -15,6 +15,10 @@ const app = new Vue({
                 text: 'Preparare la torta',
                 completed: false,
             },
+            {
+                text: 'Stendere',
+                completed: false,
+            },
         ],
         newTodo: '',
         alertDelete: {
@@ -80,6 +84,21 @@ const app = new Vue({
         closeAlert(){
             this.alertDelete.visibility = false;
             this.alertDelete.index = null;
+        },
+        /**
+         * Delete All Completed Todo
+         */
+        deleteAllCompleted(){
+            const complete = this.todos.filter(element=> {
+                if(element.completed){
+                    return element
+                }
+            });
+            complete.forEach(element => {
+                if(this.todos.includes(element)){
+                    this.todos.splice(this.todos.indexOf(element), 1);
+                }
+            });
         },
     }
 });
