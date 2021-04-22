@@ -145,7 +145,7 @@ body{
 
 /* MODAL */
 .modal{
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;

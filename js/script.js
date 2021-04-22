@@ -17,6 +17,10 @@ const app = new Vue({
             },
         ],
         newTodo: '',
+        alertDelete: {
+            visibility: false,
+            index: null,
+        },
     },
     methods: {
         /**
@@ -43,7 +47,14 @@ const app = new Vue({
          * @param {number} index array position of todo
          */
         deleteTodo(index){
-            this.todos.splice(index, 1);
+            // Delete if Completed
+            if(this.todos[index].completed){
+                this.todos.splice(index, 1);
+            } else {
+                // Show Delete Alert
+                this.alertDelete.visibility = true;
+                this.alertDelete.index = index;
+            }
         },
 
         /**
@@ -52,6 +63,23 @@ const app = new Vue({
          */
         updateStatus(index){
             this.todos[index].completed = !this.todos[index].completed
+        },
+
+        /**
+         * Confirm Delete of an Uncompleted Todo
+         */
+        confirmDelete(){
+            this.todos[this.alertDelete.index].completed = true;
+            this.deleteTodo(this.alertDelete.index);
+            this.closeAlert();
+        },
+
+        /**
+         * Close Delete Alert
+         */
+        closeAlert(){
+            this.alertDelete.visibility = false;
+            this.alertDelete.index = null;
         },
     }
 });

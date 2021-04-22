@@ -51,11 +51,11 @@
             </main>
 
         <!-- MODAL -->
-        <div class="modal">
+        <div v-show="alertDelete.visibility" class="modal">
             <div class="modal-box">
                 <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
-                <button class="btn btn-yes">Yes</button>
-                <button class="btn btn-no">No</button>
+                <button class="btn" @click="confirmDelete">Yes</button>
+                <button class="btn" @click="closeAlert">No</button>
             </div>
         </div>
     </div>
