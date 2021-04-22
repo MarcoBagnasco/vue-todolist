@@ -16,46 +16,47 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="app">
-        <!-- APP HEADER -->
-        <header class="app-header">
-            <h1>ToDo List</h1>
-        </header>
+    <div id="root" class="container">     
+            <!-- APP HEADER -->
+            <header class="app-header">
+                <h1>ToDo List</h1>
+            </header>
 
-        <!-- APP MAIN -->
-        <main class="app-main">
-            <!-- Add input -->
-            <input class="add" type="text" placeholder="Cose da fare...">
+            <!-- APP MAIN -->
+            <main class="app-main">
+                <!-- Add input -->
+                <section class="input-todo">
+                    <input type="text" placeholder="Cose da fare...">
+                    <button class="btn">Add</button>
+                </section>
 
-            <!-- Todo List -->
-            <ul class="todo-list"></ul>
+                <!-- Todo List -->
+                <ul class="todo-list">
+                    <li v-for="item in todos" class="todo-item">
+                        <span class="text">{{item.text}}</span>
+                        <div class="todo-icons">
+                            <i class="fas fa-star important"></i>
+                            <i class="fas fa-trash delete"></i>
+                        </div>
+                    </li>
+                </ul>
 
-            <!-- Delete All Completed -->
-            <div class="delete-box">
-                <button class="btn btn-del">
-                    <i class="fas fa-trash"></i>
-                    Delete all completed
-                </button>
+                <!-- Delete All Completed -->
+                <div class="delete-box">
+                    <button class="btn btn-del">
+                        <i class="fas fa-trash"></i>
+                        Delete all completed
+                    </button>
+                </div>
+            </main>
+
+        <!-- MODAL -->
+        <div class="modal">
+            <div class="modal-box">
+                <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
+                <button class="btn btn-yes">Yes</button>
+                <button class="btn btn-no">No</button>
             </div>
-        </main>
-    </div>
-
-    <!-- TEMPLATE -->
-    <div id="template" style="display:none">
-        <!-- List Item -->
-        <li class="todo-item">
-            <span class="text"></span>
-            <i class="fas fa-star important"></i>
-            <i class="fas fa-trash delete"></i>
-        </li>
-    </div>
-
-    <!-- MODAL -->
-    <div class="modal">
-        <div class="modal-box">
-            <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
-            <button class="btn btn-yes">Yes</button>
-            <button class="btn btn-no">No</button>
         </div>
     </div>
 

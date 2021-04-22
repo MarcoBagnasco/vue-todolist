@@ -5,11 +5,17 @@
     box-sizing: border-box;
 }
 body{
-    padding: 40px;
     font-size: 26px;
     background-color: rgba(240, 218, 122, 0.89);
 }
 /* UTILITIES */
+/* Layout */
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
 /* Buttons */
 .btn{
     padding: 10px 20px;
@@ -33,11 +39,6 @@ body{
     background-color: rgb(189, 33, 33);
 }
 
-/* APP */
-.app{
-    max-width: 600px;
-    margin: 0 auto;
-}
 
 /* APP HEADER */
 .app-header{
@@ -47,9 +48,12 @@ body{
 
 /* APP MAIN */
 /* Add input */
-.add{
-    width: 100%;
+.input-todo{
+    display: flex;
     margin-bottom: 20px;
+}
+.input-todo input{
+    width: 100%;
     padding: 15px;
     font-size: 20px;
     border-radius: 30px;
@@ -57,15 +61,15 @@ body{
     outline: none;
     /* cursor: url('../img/pen.png'), auto; */
 }
-.add:focus{
+.input-todo input:focus{
     background-color: rgba(221, 149, 15, 0.637);
 }
 
 /* Todo List */
 .todo-list .todo-item{
-    position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
     border-bottom: 1px solid #000;
 }
@@ -73,14 +77,16 @@ body{
 /* Item Text */
 .todo-list .todo-item .text{
     position: relative;
-    display: flex;
     align-items: center;
     margin-bottom: 10px;
+    padding: 0 25px;
     /* cursor: url('../img/check.png'), auto; */
 }
 .todo-list .todo-item .text::before{
     content: '';
-    display: inline-block;
+    position: absolute;
+    top: 8px;
+    left: 0;
     width: 13px;
     height: 13px;
     margin-right: 10px;
@@ -109,8 +115,12 @@ body{
 }
 
 /* Item Icons */
+.todo-item .todo-icons{
+    display: flex;
+}
 /* Trash Icon */
 .todo-list .todo-item i{
+    margin-left: 10px;
     color: #888;
     cursor: pointer;
 }
@@ -119,8 +129,6 @@ body{
 }
 /* Important Icon */
 .todo-list .todo-item i.important{
-    position: absolute;
-    right: 40px;
     color: #bbb;
 }
 .todo-list .todo-item i.important:hover{
