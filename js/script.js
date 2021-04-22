@@ -37,12 +37,21 @@ const app = new Vue({
                 this.$refs.todoInput.focus();
             }
         },
+
         /**
          * Delete Specific Todo
          * @param {number} index array position of todo
          */
         deleteTodo(index){
             this.todos.splice(index, 1);
+        },
+
+        /**
+         * Update Status of Specific Todo 
+         * @param {number} index array position of todo
+         */
+        updateStatus(index){
+            this.todos[index].completed = !this.todos[index].completed
         },
     }
 });
