@@ -26,8 +26,8 @@
             <main class="app-main">
                 <!-- Add input -->
                 <section class="input-todo">
-                    <input type="text" placeholder="Cose da fare...">
-                    <button class="btn">Add</button>
+                    <input v-model.trim="newTodo" type="text" placeholder="Cose da fare..." @keyup.enter="addTodo" ref="todoInput">
+                    <button class="btn" @click="addTodo">Add</button>
                 </section>
 
                 <!-- Todo List -->

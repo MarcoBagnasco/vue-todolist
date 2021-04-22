@@ -16,5 +16,23 @@ const app = new Vue({
                 completed: false,
             },
         ],
+        newTodo: '',
     },
+    methods: {
+        addTodo(){
+
+            if(this.newTodo !== ''){
+
+                this.todos.push(
+                    {
+                        text: this.newTodo,
+                        completed: false,
+                    }
+                );
+
+                this.newTodo = '';
+                this.$refs.todoInput.focus();
+            }
+        }
+    }
 });
