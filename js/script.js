@@ -4,7 +4,7 @@ const app = new Vue({
     data: {
         todos: [
             {
-                text: 'Fare la spesa',
+                text: 'sharpen knives',
                 completed: false,
                 important: false,
                 editTodo: {
@@ -13,34 +13,49 @@ const app = new Vue({
                 },
             },
             {
-                text: 'Pulire la cantina',
-                completed: false,
+                text: 'wash the coat',
+                completed: true,
                 important: false,
                 editTodo: {
                     visibility: false,
                     text: '',
                 },
-
             },
             {
-                text: 'Preparare la torta',
+                text: 'write a letter to the police',
                 completed: false,
                 important: false,
                 editTodo: {
                     visibility: false,
                     text: '',
                 },
-
             },
             {
-                text: 'Stendere',
+                text: 'buy a new top hat',
                 completed: false,
                 important: false,
                 editTodo: {
                     visibility: false,
                     text: '',
                 },
-
+            },
+            {
+                text: 'water the flowers',
+                completed: false,
+                important: true,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
+            },
+            {
+                text: 'if there is time left, rip a young prostitute',
+                completed: false,
+                important: false,
+                editTodo: {
+                    visibility: false,
+                    text: '',
+                },
             },
         ],
         newTodo: '',
@@ -197,18 +212,32 @@ const app = new Vue({
             }
         },
 
+        /**
+         * Show Edit Input
+         * @param {number} index array position of todo
+         */
         showEdit(index){
             if(!this.todos[index].completed){
                 this.todos[index].editTodo.visibility = true;
                 this.todos[index].editTodo.text = this.todos[index].text;
+                this.$refs.editInput[index].focus();
+                console.log(this.$refs.editInput[index]);
             }
         },
 
+        /**
+         * Update Edit Todo
+         * @param {number} index array position of todo
+         */
         updateTodo(index){
             this.todos[index].text = this.todos[index].editTodo.text;
             this.closeEdit(index);
         },
 
+        /**
+         * Close Edit Input
+         * @param {number} index array position of todo
+         */
         closeEdit(index){
             this.todos[index].editTodo.visibility = false;
             this.todos[index].editTodo.text = '';

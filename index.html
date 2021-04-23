@@ -12,89 +12,109 @@
     <!-- ICONS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous'/>
     
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+
     <!-- STYLE -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div id="root" class="container">     
-            <!-- APP HEADER -->
-            <header class="app-header">
-                <h1>ToDo List</h1>
-            </header>
+    <!-- BACKGROUND -->
+    <div class="layover"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(130, 2, 2, .7)" fill-opacity="1" d="M0,256L6.2,240C12.3,224,25,192,37,170.7C49.2,149,62,139,74,138.7C86.2,139,98,149,111,181.3C123.1,213,135,267,148,288C160,309,172,299,185,293.3C196.9,288,209,288,222,245.3C233.8,203,246,117,258,85.3C270.8,53,283,75,295,117.3C307.7,160,320,224,332,234.7C344.6,245,357,203,369,160C381.5,117,394,75,406,90.7C418.5,107,431,181,443,202.7C455.4,224,468,192,480,181.3C492.3,171,505,181,517,197.3C529.2,213,542,235,554,250.7C566.2,267,578,277,591,245.3C603.1,213,615,139,628,128C640,117,652,171,665,197.3C676.9,224,689,224,702,186.7C713.8,149,726,75,738,69.3C750.8,64,763,128,775,176C787.7,224,800,256,812,250.7C824.6,245,837,203,849,197.3C861.5,192,874,224,886,208C898.5,192,911,128,923,101.3C935.4,75,948,85,960,90.7C972.3,96,985,96,997,112C1009.2,128,1022,160,1034,170.7C1046.2,181,1058,171,1071,138.7C1083.1,107,1095,53,1108,74.7C1120,96,1132,192,1145,240C1156.9,288,1169,288,1182,272C1193.8,256,1206,224,1218,224C1230.8,224,1243,256,1255,261.3C1267.7,267,1280,245,1292,229.3C1304.6,213,1317,203,1329,170.7C1341.5,139,1354,85,1366,96C1378.5,107,1391,181,1403,181.3C1415.4,181,1428,107,1434,69.3L1440,32L1440,0L1433.8,0C1427.7,0,1415,0,1403,0C1390.8,0,1378,0,1366,0C1353.8,0,1342,0,1329,0C1316.9,0,1305,0,1292,0C1280,0,1268,0,1255,0C1243.1,0,1231,0,1218,0C1206.2,0,1194,0,1182,0C1169.2,0,1157,0,1145,0C1132.3,0,1120,0,1108,0C1095.4,0,1083,0,1071,0C1058.5,0,1046,0,1034,0C1021.5,0,1009,0,997,0C984.6,0,972,0,960,0C947.7,0,935,0,923,0C910.8,0,898,0,886,0C873.8,0,862,0,849,0C836.9,0,825,0,812,0C800,0,788,0,775,0C763.1,0,751,0,738,0C726.2,0,714,0,702,0C689.2,0,677,0,665,0C652.3,0,640,0,628,0C615.4,0,603,0,591,0C578.5,0,566,0,554,0C541.5,0,529,0,517,0C504.6,0,492,0,480,0C467.7,0,455,0,443,0C430.8,0,418,0,406,0C393.8,0,382,0,369,0C356.9,0,345,0,332,0C320,0,308,0,295,0C283.1,0,271,0,258,0C246.2,0,234,0,222,0C209.2,0,197,0,185,0C172.3,0,160,0,148,0C135.4,0,123,0,111,0C98.5,0,86,0,74,0C61.5,0,49,0,37,0C24.6,0,12,0,6,0L0,0Z"></path></svg>
 
-            <!-- APP MAIN -->
-            <main class="app-main">
-                <!-- ADD INPUT -->
-                <section class="input-todo">
-                    <input v-model.trim="newTodo" type="text" placeholder="Cose da fare..." @keyup.enter="addTodo" ref="todoInput">
-                    <button class="btn" @click="addTodo">Add</button>
-                </section>
+    <div id="root" class="container">   
+          
+        <!-- APP HEADER -->
+        <header class="app-header">
+            <h1>Jack's List</h1>
+        </header>
 
-                <!-- TODO LIST -->
-                <ul class="todo-list">
-                    <li v-for="(item, index) in todos" class="todo-item impo">
-                        <span class="text" :class="{completed: item.completed, important: item.important}" @click="updateStatus(index)">{{item.text}}</span>
-                        <div class="todo-icons">
-                            <i class="fas fa-edit edit" @click="showEdit(index)"></i>
-                            <i class="fas fa-star important" :class="{active: item.important}" @click="switchImportant(index)"></i>
-                            <i class="fas fa-trash delete" @click="trashTodo(index)"></i>
+        <!-- APP MAIN -->
+        <main class="app-main">
+            <!-- ADD INPUT -->
+            <section class="input-todo">
+                <input v-model.trim="newTodo" type="text" placeholder="Things to do..." @keyup.enter="addTodo" ref="todoInput">
+                <button class="btn" @click="addTodo">Add</button>
+            </section>
+
+            <!-- No Task -->
+            <p v-if="todos.length == 0" class="no-task">No task today</p>
+
+            <!-- TODO LIST -->
+            <ul class="todo-list">
+                <li v-for="(item, index) in todos" class="todo-item impo">
+                    <span class="text" :class="{completed: item.completed, important: item.important}" @click="updateStatus(index)">{{item.text}}</span>
+                    <!-- Todo Icons -->
+                    <div class="todo-icons">
+                        <i class="fas fa-edit edit" @click="showEdit(index)"></i>
+                        <i class="fas fa-star important" :class="{active: item.important}" @click="switchImportant(index)"></i>
+                        <i class="fas fa-trash delete" @click="trashTodo(index)"></i>
+                    </div>
+                    <!-- Edit Input -->
+                    <div v-show="item.editTodo.visibility" class="edit-wrap">
+                        <input v-model="item.editTodo.text" class="edit-input" type="text" @keyup.enter="updateTodo(index)" ref="editInput">
+                        <!-- Edit Icons -->
+                        <div class="edit-icons">
+                            <i class="fas fa-check check" @click="updateTodo(index)"></i>
+                            <i class="fas fa-times delete" @click="closeEdit(index)"></i>
                         </div>
-                        <!-- Edit Input -->
-                        <div v-show="item.editTodo.visibility" class="edit-wrap">
-                            <input v-model="item.editTodo.text" class="edit-input" type="text">
-                            <div class="edit-icons">
-                                <i class="fas fa-check check" @click="updateTodo(index)"></i>
-                                <i class="fas fa-times delete" @click="closeEdit(index)"></i>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- DELETE ALL COMPLETED -->
+            <div class="delete-box">
+                <button class="btn btn-del" @click="deleteAllCompleted">
+                    <i class="fas fa-trash"></i>
+                    Delete all completed
+                </button>
+            </div>
+
+            <!-- TRASH -->
+            <div class="trash">
+                <!-- Trash Icons -->
+                <i class="fas fa-trash-alt can"></i>
+                <i v-show="!trash" class="fas fa-chevron-down arrow" @click="showTrash"></i>
+                <i v-show="trash" class="fas fa-chevron-up arrow" @click="showTrash"></i>
+                
+                <!-- Empty Trash -->
+                <div v-if="deleted.length == 0" v-show="trash" class="empty-trash">The Trash is Empty</div>
+
+                <!-- Trash Content -->
+                <div v-show="trash" class="trash-content">
+                    <!-- Deleted Todo -->
+                    <ul class="deleted-todo-list">
+                        <li v-for="(item, index) in deleted" class="deleted-todo">
+                            <span class="text">{{item.text}}</span>
+                            <!-- Trash Content Icons -->
+                            <div class="trash-icons">
+                                <i class="fas fa-trash-restore restore" @click="restoreTodo(index)"></i>
+                                <i class="fas fa-times delete" @click="deleteTodo(index)"></i>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                    <button v-show="deleted.length > 0" class="btn btn-del" @click="showModalTrash">Empty Trash</button>
 
-                <!-- DELETE ALL COMPLETED -->
-                <div class="delete-box">
-                    <button class="btn btn-del" @click="deleteAllCompleted">
-                        <i class="fas fa-trash"></i>
-                        Delete all completed
-                    </button>
-                </div>
-
-                <!-- TRASH -->
-                <div class="trash">
-                    
-                    <i class="fas fa-trash-alt"></i>
-                    <i v-show="!trash" class="fas fa-chevron-down arrow" @click="showTrash"></i>
-                    <i v-show="trash" class="fas fa-chevron-up arrow" @click="showTrash"></i>
-                    
-                    <div v-show="trash" class="trash-content">
-                        <ul class="deleted-todo-list">
-                            <li v-for="(item, index) in deleted" class="deleted-todo">
-                                {{item.text}}
-                                <div class="trash-icons">
-                                    <i class="fas fa-trash-restore restore" @click="restoreTodo(index)"></i>
-                                    <i class="fas fa-times delete" @click="deleteTodo(index)"></i>
-                                </div>
-                            </li>
-                        </ul>
-                        <button v-show="deleted.length > 0" class="btn btn-del" @click="showModalTrash">Empty Trash</button>
-
-                        <!-- Trash modal -->
-                        <div v-show="modalTrash" class="modal trash-modal">
-                            <div class="modal-box">
-                                <p>Are You Sure to Delete All?</p>
-                                <button class="btn" @click="emptyTrash">Yes</button>
-                                <button class="btn" @click="closeModalTrash">No</button>
-                            </div>
+                    <!-- Trash modal -->
+                    <div v-show="modalTrash" class="modal trash-modal">
+                        <div class="modal-box">
+                            <p>Are You Sure to Delete All?</p>
+                            <button class="btn btn-decision btn-yes" @click="emptyTrash">Yes</button>
+                            <button class="btn btn-decision btn-no" @click="closeModalTrash">No</button>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
 
         <!-- DELETE ALL MODAL -->
         <div v-show="alertDelete.visibility" class="modal delete-all-modal">
             <div class="modal-box">
                 <p>You haven't completed this task yet!<br>Are you sure to delete it?</p>
-                <button class="btn" @click="confirmDelete">Yes</button>
-                <button class="btn" @click="closeAlert">No</button>
+                <button class="btn btn-decision btn-yes" @click="confirmDelete">Yes</button>
+                <button class="btn btn-decision btn-no" @click="closeAlert">No</button>
             </div>
         </div>
     </div>
