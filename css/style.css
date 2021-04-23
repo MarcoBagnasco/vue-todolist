@@ -8,7 +8,7 @@
 body{
     font-size: 18px;
     background-color: #000;
-    background-image: url('https://i.pinimg.com/originals/cc/f3/c7/ccf3c7b261a5b32175f68a34e132999a.jpg');
+    background-image: url('../img/oldLondon.jpg');
     background-position: center;
     background-repeat: no-repeat;
 }
